@@ -12,11 +12,10 @@ async function main() {
     const impersonatedSigner = await ethers.getSigner(TOKEN_HOLDER);
 
     const amountOut = ethers.parseUnits("20", 18);
-    const amountInMax = ethers.parseUnits("1000", 6);
+    const amountInMax = ethers.parseUnits("30", 6);
 
     const USDC_Contract = await ethers.getContractAt("IERC20", USDC, impersonatedSigner);
-    const DAI_Contract = await ethers.getContractAt("IERC20", DAI);
-    
+    const DAI_Contract = await ethers.getContractAt("IERC20", DAI, impersonatedSigner);
     const ROUTER = await ethers.getContractAt("IUniswapV2Router", ROUTER_ADDRESS, impersonatedSigner);
 
     await USDC_Contract.approve(ROUTER, amountOut);
